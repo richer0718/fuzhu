@@ -105,8 +105,8 @@
                             <tr>
                                 <td>账号状态</td>
                                 <td>
-                                    @if(session('res') -> status_name == '微信二维码') <a href="{{ asset('images').'/'.session('res')->area.'-'.session('res')->number.'.jpg' }}" target="_blank" style="color:red;">扫描微信二维码</a>
-                                    @elseif(session('res') -> status_name == '手机验证码' ) <a href="{{ asset('images').'/'.session('res')->area.'-'.session('res')->number.'.jpg' }}" target="_blank" style="color:red;">查看图片</a> <a class="yanzhengma" data="{{ session('res') -> id }}" style="color:red;">输入验证码</a>
+                                    @if(session('res') -> status_name == '微信二维码') <a href="{{ 'http://feifeifuzhu.com/jietu/'.session('res')->area.'-'.session('res')->number.'.jpg' }}" target="_blank" style="color:red;">扫描微信二维码</a>
+                                    @elseif(session('res') -> status_name == '手机验证码' ) <a href="{{ 'http://feifeifuzhu.com/jietu/'.session('res')->area.'-'.session('res')->number.'.jpg' }}" target="_blank" style="color:red;">查看图片</a> <a class="yanzhengma" data="{{ session('res') -> id }}" style="color:red;">输入验证码</a>
                                     @else
                                         {{ session('res') -> status_name }}
                                     @endif
