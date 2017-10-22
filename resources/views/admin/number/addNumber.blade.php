@@ -229,11 +229,26 @@
             $('#show_savetime').val($('input[name=save_time]').val());
             $('#show_shanghaotime').val($('input[name=shanghao_time]').val());
 
+            if(issbccase($('input[name=number]').val())){
+                alert('账号不合法');return false;
+            }
 
 
             $('#queren').modal('show')
             //弹框让他确认
             return false;
+        }
+
+        function   issbccase(source)   {
+            if   (source=="")   {
+                return   true;
+            }
+            var   reg=/^[\w\u4e00-\u9fa5\uf900-\ufa2d]*$/;
+            if   (reg.test(source))   {
+                return   false;
+            }   else   {
+                return   true;
+            }
         }
 
     </script>
