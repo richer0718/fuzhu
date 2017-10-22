@@ -19,11 +19,11 @@
                 <table class="table table-striped table-bordered" style="width:450px;">
                     <tr>
                         <td style="width:120px;">游戏账号：</td>
-                        <td><input type="text"  class="form-control"  name="number" @if(isset($info) || old('number') ) value="{{ $info -> number or old('number')  }}" @endif required/></td>
+                        <td><input type="text"  class="form-control"  name="number" @if(isset($info) || old('number') ) value="{{ $info -> number or old('number')  }}" @endif required  onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9\@\.\!\#\$\%\?]/g,'')"/></td>
                     </tr>
                     <tr>
                         <td>游戏密码：</td>
-                        <td><input type="text"  class="form-control" name="pass" @if(isset($info) || old('pass') ) value="{{ $info -> pass or old('pass') }}" @endif required/></td>
+                        <td><input type="text"  class="form-control" name="pass" @if(isset($info) || old('pass') ) value="{{ $info -> pass or old('pass') }}" @endif required onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9\@\.\!\#\$\%\?]/g,'')" /></td>
                     </tr>
                     <tr>
                         <td>大区：</td>
@@ -52,7 +52,7 @@
                         <td>刷图次数：</td>
                         <td>
                             <div class="input-group">
-                                <input type="number" class="form-control" name="save_time" min="100" max="1300" @if(isset($info) || old('save_time')) value="{{ $info -> save_time or old('save_time') }}" @else value="200" @endif required/>
+                                <input type="number" class="form-control" name="save_time" min="100" max="1300" @if(isset($info) || old('save_time')) value="{{ $info -> use_time or old('save_time') }}" @else value="200" @endif required/>
                                 <span class="input-group-addon">次(100~1300)</span>
                             </div>
                         </td>
@@ -69,7 +69,7 @@
                         </td>
                     </tr>
 
-                    <tr id="super_tr" style="display:none;">
+                    <tr id="super_tr" @if(!isset($info))style="display:none;"@endif >
                         <td>截止时间：</td>
                         <td>
                             <div class="input-group">
@@ -281,16 +281,21 @@
             //弹框让他确认
             return false;
         }
-        function   issbccase(source)   {
+        function issbccase(source){
             if   (source=="")   {
                 return   true;
             }
-            var   reg=/^[\w\u4e00-\u9fa5\uf900-\ufa2d]*$/;
-            if   (reg.test(source))   {
+            //var   reg= /^[\w\u4e00-\u9fa5\uf900-\ufa2d]*$/;
+            //var reg = /[^\uff00-\uffff]/ ;
+            if(reg.test(source)){
                 return   false;
-            }   else   {
+            }else{
                 return   true;
             }
+        }
+
+        function checkStr(){
+
         }
     </script>
     <script>
