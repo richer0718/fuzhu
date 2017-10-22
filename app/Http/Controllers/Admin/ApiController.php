@@ -153,7 +153,7 @@ class ApiController extends Controller
             ]) -> increment('number_lishi');
             DB::table('daili') -> where([
                 'username' => $number_info -> add_user
-            ]) -> decrement('number_guaji',intval($point));
+            ]) -> decrement('number_guaji');
 
 
             //记录回收日志
