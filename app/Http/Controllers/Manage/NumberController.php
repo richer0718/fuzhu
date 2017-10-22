@@ -45,7 +45,7 @@ class NumberController extends Controller
             '-5' => '账号冻结',
             '-6' => '未关闭登陆保护',
             '-7' => '新号',
-            '-8' => '内部错误',
+            '5' => '内部错误',
             '-20' => '验证失败',
             '-21' => '点数不足',
         ];
@@ -403,7 +403,7 @@ class NumberController extends Controller
             ////把违约 剩下的钱还给他
             //
             $log_res = new Log();
-            $log_res -> write(session('username'),'回收',intval($price_all) - 100,$number_info);
+            $log_res -> write(session('username'),'回收',intval($price_all) - 100,$number_info -> number);
         }
 
 

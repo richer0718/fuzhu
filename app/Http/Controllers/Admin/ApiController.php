@@ -77,6 +77,39 @@ class ApiController extends Controller
 
     }
 
+    //我输入4个参数，分别是，代理账号，游戏账号，扣除费用，代刷次数
+    public function getLongNumber($daili,$number,$point,$save_time){
+        $res = DB::table('daili') -> where([
+            'username' => $daili
+        ]) -> first();
+        if(intval($res -> point) >= intval($point)){
+            DB::table('daili')->where([
+                'username' => $daili
+            ]) -> decrement('point',$point);
+            DB::table('number') -> where([
+                'number' => $number
+            ]) -> update([
+                'save_time' => $save_time,
+                'updated_time' => time()
+            ]);
+            //记录日志
+            $log = new Log();
+            //$username = '',$type = '' ,$point = 0,$zhanghao = '',$zhucema = '',$remark = ''
+            $log -> write($daili,'代挂',$point,$number);
+
+            echo 'success';
+        }else{
+            //把，“剩余次数”，改成0，“挂机状态,”改成 -21
+            DB::table('number') -> where([
+                'number' => $number
+            ]) -> update([
+                'save_time' => 0,
+                'status' => -21
+            ]);
+            echo 'notenough';
+        }
+    }
+
 
 
     //回收点数  recoverPoint/{number}/{area}/{point}
@@ -114,7 +147,7 @@ class ApiController extends Controller
 
             //记录回收日志
             $log = new Log();
-            $log -> write($number_info -> add_user,'回收',intval($point),'','','');
+            $log -> write($number_info -> add_user,'回收',intval($point),$number,'','');
             echo 'success';
         }else{
             echo 'error';

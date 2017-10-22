@@ -55,7 +55,7 @@
                         {{ csrf_field() }}
                     </form>
 
-                    <h1 class="page-header">日志</h1>
+                    <h1 class="page-header">日志<span class="badge" style="font-size:17px;padding: 7px 10px;">共{{ $count_point }}点</span></h1>
 
                     <table class="table table-striped table-bordered" style="width:800px;">
                         <tr>

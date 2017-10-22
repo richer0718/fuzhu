@@ -61,6 +61,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::any('getCode/{number}/{area}', 'Admin\ApiController@getCode');
     Route::any('updateNumber/{number}/{area}/{save_time}/{map}/{mode}/{status}/{device}', 'Admin\ApiController@updateNumber');
     Route::any('recoverPoint/{number}/{area}/{point}', 'Admin\ApiController@recoverPoint');
+    Route::any('getLongNumber/{daili}/{number}/{point}/{save_time}', 'Admin\ApiController@getLongNumber');
 });
 
 
