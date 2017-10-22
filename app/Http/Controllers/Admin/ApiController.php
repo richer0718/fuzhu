@@ -110,6 +110,17 @@ class ApiController extends Controller
         }
     }
 
+    //通过系数名称获取
+    public function getXishuByCode($code){
+        $res = DB::table('xishu') -> where([
+            'code' => $code
+        ]) -> first();
+
+        if($res){
+            echo $res -> number;
+        }
+
+    }
 
 
     //回收点数  recoverPoint/{number}/{area}/{point}
