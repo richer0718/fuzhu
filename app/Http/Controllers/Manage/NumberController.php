@@ -399,13 +399,18 @@ class NumberController extends Controller
         if(intval($point_user) + intval($price_all) <100){
             //需要给他更新的点数为
             $poing_result = 0;
+
+
+
         }else{
             $poing_result = $point_user + $price_all - 100 ;
             ////把违约 剩下的钱还给他
-            //
-            $log_res = new Log();
-            $log_res -> write(session('username'),'回收',intval($price_all) - 100,$number_info -> number);
+
         }
+
+        //返还多少点 就是回收多少点
+        $log_res = new Log();
+        $log_res -> write(session('username'),'回收',intval($price_all),$number_info -> number);
 
 
 
