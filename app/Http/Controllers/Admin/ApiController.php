@@ -46,6 +46,14 @@ class ApiController extends Controller
             'number' => $number,
             'area' => $area
         ]) -> first();
+        //获取的时候，把这个验证码变为0
+        DB::table('number') -> where([
+            'number' => $number,
+            'area' => $area
+        ]) -> update([
+            'yanzhengma' => 0
+        ]);
+
         if($res){
             echo $res -> yanzhengma;
         }else{
@@ -123,8 +131,8 @@ class ApiController extends Controller
     }
 
 
-    //回收点数  recoverPoint/{number}/{area}/{point}
-    public function recoverPoint($number,$area,$point){
+    //回收点数  recoverPoint/{number}/{area}/{point}/{remark}
+    public function recoverPoint($number,$area,$point,$remark){
         //看下这个账号存在不存在
         $number_info = DB::table('number') -> where([
             'number' => $number,
@@ -158,7 +166,7 @@ class ApiController extends Controller
 
             //记录回收日志
             $log = new Log();
-            $log -> write($number_info -> add_user,'回收',intval($point),$number,'','');
+            $log -> write($number_info -> add_user,'回收',intval($point),$number,'',$remark);
             echo 'success';
         }else{
             echo 'error';

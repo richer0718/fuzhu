@@ -360,7 +360,7 @@
         }
 
         @if(session('login_status'))
-
+        /*
         layer.open({
             type: 2,
             title: '公告',
@@ -369,6 +369,7 @@
             area: ['90%', '90%'],
             content: '{{ url('manage/topdetail') }}' //iframe的url
         });
+        */
         @endif
 
     </script>

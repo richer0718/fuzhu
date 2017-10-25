@@ -261,12 +261,6 @@
             $('#show_savetime').val($('input[name=save_time]').val());
             $('#show_shanghaotime').val($('input[name=shanghao_time]').val());
 
-            if(issbccase($('input[name=number]').val()) ){
-                alert('账号不合法');return false;
-            }
-            if(issbccase($('input[name=pass]').val()) ){
-                alert('密码不合法');return false;
-            }
             //消耗点数赋值
             var area_val = $('#area_select option:selected').val();
 
@@ -282,7 +276,7 @@
             return false;
         }
         function issbccase(source){
-            if   (source=="")   {
+            if   (source == ''){
                 return   true;
             }
             //var   reg= /^[\w\u4e00-\u9fa5\uf900-\ufa2d]*$/;

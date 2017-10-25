@@ -60,7 +60,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::any('getNumberData/{number}/{area}', 'Admin\ApiController@getNumberData');
     Route::any('getCode/{number}/{area}', 'Admin\ApiController@getCode');
     Route::any('updateNumber/{number}/{area}/{save_time}/{map}/{mode}/{status}/{device}', 'Admin\ApiController@updateNumber');
-    Route::any('recoverPoint/{number}/{area}/{point}', 'Admin\ApiController@recoverPoint');
+    Route::any('recoverPoint/{number}/{area}/{point}/{remark}', 'Admin\ApiController@recoverPoint');
     Route::any('getLongNumber/{daili}/{number}/{point}/{save_time}', 'Admin\ApiController@getLongNumber');
     Route::any('getXishuByCode/{code}', 'Admin\ApiController@getXishuByCode');
 });

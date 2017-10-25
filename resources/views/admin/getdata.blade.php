@@ -10,7 +10,7 @@
     <div class="siteIcon"><img src="{{asset('admin/images/icon/icon.png')}}" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用飞飞辅助系统" draggable="false" /></div>
     <form action="{{url('chaxunRes')}}" method="post" autocomplete="off" >
 
-        <div class="modal-content" style="width:450px;margin:0 auto;">
+        <div class="modal-content" style="width:80%;margin:0 auto;">
             <div class="modal-header">
                 <h4 class="modal-title" >查询</h4>
             </div>
@@ -70,7 +70,7 @@
 
 @if( session('res') )
     <div class="modal fade " id="showres" tabindex="-1" role="dialog"  >
-        <div class="modal-dialog" role="document" style="width:400px;">
+        <div class="modal-dialog" role="document" style="width:80%;">
             <form action="{{ url('admin/editDailiRes') }}" method="post" autocomplete="off" draggable="false" id="myForm">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -131,7 +131,7 @@
 
 <!-- 输入手机验证码 -->
 <div class="modal fade " id="yanzhengma_input" tabindex="-1" role="dialog"  >
-    <div class="modal-dialog" role="document" style="width:400px;">
+    <div class="modal-dialog" role="document" style="width:80%;">
         <form action="{{ url('customer/yanzhengma') }}" method="post" autocomplete="off" draggable="false" id="myForm">
             <div class="modal-content">
                 <div class="modal-header">
