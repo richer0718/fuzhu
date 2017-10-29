@@ -52,7 +52,7 @@
                         <tr>
                             <td width="25%">用户名:</td>
                             <td width="75%">
-                                <input type="text"  class="form-control" name="username" value="{{ old('username') }}" maxlength="" autocomplete="off" required/>
+                                <input type="text"  class="form-control" name="username" value="{{ old('username') }}" maxlength="10" autocomplete="off" required/>
                             </td>
                         </tr>
                         <tr>
