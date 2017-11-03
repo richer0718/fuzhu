@@ -251,6 +251,10 @@
                 $('#super_trr').hide();
             }
 
+            if($('input[name=number]').val().indexOf('%')>=1 || $('input[name=number]').val().indexOf('#')>=1 || $('input[name=pass]').val().indexOf('%')>=1 || $('input[name=pass]').val().indexOf('#')>=1 ){
+                alert('输入不合法');return false;
+            }
+
 
             //把值赋过去
             $('#show_number').val($('input[name=number]').val());
@@ -260,6 +264,9 @@
             $('#show_mode').val($('#mode_select option:selected').text());
             $('#show_savetime').val($('input[name=save_time]').val());
             $('#show_shanghaotime').val($('input[name=shanghao_time]').val());
+
+
+
 
             //消耗点数赋值
             var area_val = $('#area_select option:selected').val();
