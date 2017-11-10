@@ -26,6 +26,8 @@ Route::get('/admin/index', 'Admin\IndexController@index');
 Route::get('/admin/login', 'Admin\IndexController@login');
 Route::any('/admin/loginRes', 'Admin\IndexController@loginRes');
 Route::any('/admin/loginout', 'Admin\IndexController@loginout');
+//验证码
+Route::get('/captcha', 'CodeController@index');
 
 
 Route::group(['as' => 'admin_number','middleware' => ['checkadminlogin']], function () {

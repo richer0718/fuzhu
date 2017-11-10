@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Manage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Mews\Captcha\Facades\Captcha;
 
 class IndexController extends Controller
 {
@@ -19,6 +20,7 @@ class IndexController extends Controller
     }
 
     public function loginRes(Request $request){
+
         $username = $request -> input('username');
         $password = $request -> input('password');
         $res = DB::table('daili') -> where([
@@ -43,6 +45,9 @@ class IndexController extends Controller
     }
 
     public function regRes(Request $request){
+        if(!Captcha::check($request -> input('code'))){
+            return redirect('manage/login')->with('code', 'error')->withInput( $request->flash() );
+        }
         //检测是否可以注册
         $is_reg = DB::table('reg') -> where([
             'id' => 1
@@ -56,7 +61,7 @@ class IndexController extends Controller
             'username' => $request -> input('username')
         ]) -> first();
         if($is_set){
-            return view('manage/login') -> withInput( $request->flash() );
+            return view('manage/login') -> with('nameisset','yes') -> withInput( $request->flash() );
         }
         DB::table('daili') -> insert([
             'username' => $request -> input('username'),

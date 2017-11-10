@@ -70,7 +70,7 @@
                         <tr>
                             <td>QQ:</td>
                             <td>
-                                <input type="number"  class="form-control" name="qq" value="{{ old('qq') }}" maxlength="" autocomplete="off" required/>
+                                <input type="number"  class="form-control" name="qq" value="{{ old('qq') }}" minlength="8" maxlength="11" autocomplete="off" required/>
                             </td>
                         </tr>
                         <tr>
@@ -78,6 +78,18 @@
                             <td>
                                 <input type="number" class="form-control" name="tel" value="{{ old('tel') }}" maxlength="" autocomplete="off" required/>
 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>验证码:</td>
+                            <td>
+                                <input type="text" class="form-control" name="code" value="{{ old('code') }}" maxlength="" autocomplete="off" required/>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <img src="{{ url('captcha') }}" onclick="this.src='{{ url('captcha/mews') }}?r='+Math.random();" alt="">
                             </td>
                         </tr>
 
@@ -166,10 +178,9 @@
     $('#findpass').click(function(){
         $('#findpass-box').modal('show');
     })
-    @if(old('username'))
-        alert('用户名已存在');
-        $('#reg-box').modal('show');
-    @endif
+
+
+
 
 
 $('[data-toggle="tooltip"]').tooltip();
@@ -205,6 +216,14 @@ $('[data-toggle="tooltip"]').tooltip();
     @if (session('findpass') == 'success')
         alert('找回密码成功！请重新登录');
     @endif
+    @if(session('code'))
+        $('#reg-box').modal('show');
+        alert('验证码错误！');
+    @endif
+    @if(session('nameisset'))
+        $('#reg-box').modal('show');
+        alert('用户名已存在');
+    @endif
 
 
 
@@ -213,7 +232,21 @@ $('[data-toggle="tooltip"]').tooltip();
         if( $('input[name=repassword]').val() !=  $('input[name=newpassword]').val()  ){
             alert('两次输入密码不一致');return false;
         }
+        //检验手机格式
+        if (!isPhoneNo($('input[name=tel]').val())) {
+            alert("手机号码格式不正确！");
+            return false;
+        }
+        return true;
     }
+
+    function isPhoneNo(phone) {
+        var pattern = /^1[34578]\d{9}$/;
+        return pattern.test(phone);
+    }
+
+
+
 
     function chekform2(){
         //检测两次输入的密码是否一致
