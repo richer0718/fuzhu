@@ -52,8 +52,8 @@
                         <td>刷图次数：</td>
                         <td>
                             <div class="input-group">
-                                <input type="number" class="form-control" name="save_time" min="100" max="1300" @if(isset($info) || old('save_time')) value="{{ $info -> use_time or old('save_time') }}" @else value="30" @endif required/>
-                                <span class="input-group-addon">次(100~1300)</span>
+                                <input type="number" class="form-control" name="save_time" min="30" max="1300" @if(isset($info) || old('save_time')) value="{{ $info -> use_time or old('save_time') }}" @else value="100" @endif required/>
+                                <span class="input-group-addon">次(30~1300)</span>
                             </div>
                         </td>
                     </tr>
